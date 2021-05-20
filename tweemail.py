@@ -24,9 +24,11 @@ class Email:
         SMTP host address
     port : int
         SMTP host port
+    body_type : str, optional
+        accepted options are 'html' and 'plain'
     '''
-    def __init__(self, sender=None, recipients=None, subject=None,
-                 body=None, attachments=None, host=None, port=None):
+    def __init__(self, sender=None, recipients=None, subject=None, body=None,
+                 attachments=None, host=None, port=None, body_type='html'):
         self.msg = MIMEMultipart()
         if sender:
             self.set_sender(sender)
@@ -35,7 +37,7 @@ class Email:
         if subject:
             self.set_subject(subject)
         if body:
-            self.attach_body(body)
+            self.attach_body(body, body_type)
         if attachments:
             self.attach_files(attachments)
         if host:
