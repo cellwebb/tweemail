@@ -19,7 +19,7 @@ class Email:
     body : str
         email body
     attachments : str or list
-        filepath of email attachments
+        filepaths of email attachments
     host : str
         SMTP host address
     port : int
