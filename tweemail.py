@@ -81,12 +81,16 @@ class Email:
         assert (hasattr(self, 'host')), (
             'You must set your host connection string before sending')
 
-        s = smtplib.SMTP(self.host)
+        if not hasattr(self, 'port'):
+            print('Port not set, using default value of 0')
+            self.port = 0
+
+        s = smtplib.SMTP(self.host, self.port)
         try:
             s.sendmail(self.msg['From'], self.msg['To'], self.msg.as_string())
             print(f"Email sent to: {self.msg['To']}")
         except Exception as e:
-            print('Email not sent')
+            print('An error occured and email was not sent')
             print(e)
         finally:
             s.quit()
