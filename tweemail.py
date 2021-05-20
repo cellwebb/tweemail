@@ -81,7 +81,7 @@ class Email:
         assert (self.msg['To'] and self.msg['From']), (
             'A sender and at least one recipient are required.')
         assert (hasattr(self, 'host')), (
-            'You must set your host connection string before sending')
+            'You must set your host address before sending')
 
         if not hasattr(self, 'port'):
             print('Port not set, using default value of 0')
